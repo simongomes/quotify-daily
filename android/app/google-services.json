@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "258385046678",
+    "firebase_url": "https://quotify-daily-210bd.firebaseio.com",
+    "project_id": "quotify-daily-210bd",
+    "storage_bucket": "quotify-daily-210bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:258385046678:android:33ff3796c03ad52c0026b7",
+        "android_client_info": {
+          "package_name": "dev.simongomes.quotify_daily"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "258385046678-k363af0dmt5c0i9q8e67tb5dluptvl9g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1d2Mv_nAVFhsLvOoekQyNIapR_riiun8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "258385046678-k363af0dmt5c0i9q8e67tb5dluptvl9g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

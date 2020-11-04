@@ -37,13 +37,13 @@ class _QuoteScreenState extends State<QuoteScreen> {
     return AppBar(
       elevation: 0,
       title: Text(greeting()),
-      actions: [
-        IconButton(
-          icon: Icon(Icons.favorite_border_rounded),
-          color: Theme.of(context).accentColor,
-          onPressed: (){},
-        )
-      ],
+      // actions: [
+      //   IconButton(
+      //     icon: Icon(Icons.favorite_border_rounded),
+      //     color: Theme.of(context).accentColor,
+      //     onPressed: (){},
+      //   )
+      // ],
     );
   }
 }

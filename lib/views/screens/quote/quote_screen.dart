@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../models/quote.dart';
-import '../../../utils/db_helper.dart';
 import './local_widgets/build_quote.dart';
+import './local_widgets/favorite_action_button.dart';
+import '../../../models/quote.dart';
 import '../../../utils/greeting.dart';
 import '../../../services/quoteApi.dart';
 
@@ -21,7 +21,7 @@ class _QuoteScreenState extends State<QuoteScreen> {
       builder: (_, quoteSnapshot) => Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
         extendBodyBehindAppBar: true,
-        appBar: topAppBar(context, quoteSnapshot),
+        appBar: QuoteAppBar(title: greeting(), quote: quoteSnapshot.data,), //topAppBar(context, quoteSnapshot),
         body: Center(
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 70),
@@ -33,41 +33,13 @@ class _QuoteScreenState extends State<QuoteScreen> {
         ),
     );
   }
+}
 
-  AppBar topAppBar(BuildContext context, AsyncSnapshot<dynamic> quoteSnapshot) {
-    final Quote quote = quoteSnapshot.data;
-    if(quote.isFavorite) {
-        _isFavorite = true;
-    } else {
-        _isFavorite = false;
-    }
-
-    return AppBar(
-      elevation: 0,
-      title: Text(greeting()),
-      actions: [
-        IconButton(
-          icon: _isFavorite ? Icon(Icons.favorite) : Icon(Icons.favorite_border_rounded),
-          color: Theme.of(context).accentColor,
-          onPressed: () async {
-
-            if(!_isFavorite) {
-              DBHelper.insert('user_favorite_quotes', quote.toMap());
-              final data = await DBHelper.getData('user_favorite_quotes');
-              setState(() {
-                _isFavorite = true;
-              });
-
-            } else {
-              await DBHelper.deleteFavoriteQuote(quote.id);
-              setState(() {
-                _isFavorite = false;
-              });
-            }
-          },
-        )
-      ],
-    );
-  }
+class QuoteAppBar extends AppBar {
+  QuoteAppBar({
+    Key key,
+    String title,
+    Quote quote,
+  }) : super(key: key, title: Text(title), elevation: 0, actions: [FavoriteActionButton(quote)]);
 }
 

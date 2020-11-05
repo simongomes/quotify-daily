@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:quotify_daily/models/quote.dart';
+import 'package:quotify_daily/utils/db_helper.dart';
+import '../models/quote.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class QuoteApi {
@@ -42,9 +43,22 @@ class QuoteApi {
           prefs.setString('quote_date', today);
         } else {
           response = await Dio().get(getUrl);
+          // check if user exist but quote is missing
+          if(response.data == null) {
+            response = await Dio().get("http://api.quotable.io/random");
+            successResponse = await Dio().patch(getUrl, data: jsonDecode(response.toString()));
+            // Update the quote date to today
+            prefs.setString('quote_date', today);
+          }
         }
       }
       _quote = Quote.fromJson(jsonDecode(response.toString()));
+
+      // check if quote is favorite
+      final quoteIsFavorite = await DBHelper.getQuoteById(_quote.id);
+      if(quoteIsFavorite.isNotEmpty) {
+        _quote.isFavorite = true;
+      }
       return _quote;
     } on DioError catch (e) {
       print("DioError: $e");

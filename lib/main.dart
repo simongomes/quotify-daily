@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './views/screens/quote_screen.dart';
+import './views/screens/quote/quote_screen.dart';
 
 void main() {
   runApp(MyApp());

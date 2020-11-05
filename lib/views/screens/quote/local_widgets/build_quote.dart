@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../models/quote.dart';
+import '../../../../models/quote.dart';
 
 class BuildQuote extends StatelessWidget {
   final Quote quote;

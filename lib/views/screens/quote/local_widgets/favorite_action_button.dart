@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import '../../../../models/quote.dart';
 import '../../../../utils/db_helper.dart';
 
+
 class FavoriteActionButton extends StatefulWidget {
   final Quote _quote;
-
   FavoriteActionButton(this._quote);
 
   @override
@@ -42,3 +42,5 @@ class _FavoriteActionButtonState extends State<FavoriteActionButton> {
     );
   }
 }
+
+
